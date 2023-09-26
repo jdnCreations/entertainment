@@ -6,6 +6,7 @@ import { Outfit } from "next/font/google";
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import Navbar from "~/components/Navbar";
 
 const outfit = Outfit({
   weight: ["300", "500"],
@@ -19,6 +20,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     // <SessionProvider session={session}>
     <main className={outfit.className}>
+      <Navbar />
       <Component {...pageProps} />
     </main>
     // </SessionProvider>

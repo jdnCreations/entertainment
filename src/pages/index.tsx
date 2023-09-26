@@ -13,64 +13,13 @@ export default function Home() {
         <link rel="icon" href="/favicon-32x32.png" />
       </Head>
       <main className="h-screen bg-darkest-blue p-4 text-white">
-        <nav className="absolute left-0 top-0 flex h-[56px] w-screen items-center justify-between bg-dark-blue p-4">
-          <Link href={"/"}>
-            <Image
-              src={"/images/logo.svg"}
-              alt="logo"
-              width={32}
-              height={25.6}
-            />
-          </Link>
-          <div className="flex gap-6">
-            <Link href={"/"}>
-              <Image
-                src={"/images/icon-nav-home.svg"}
-                alt="home"
-                width={20}
-                height={20}
-              />
-            </Link>
-            <Link href={"/movies"}>
-              <Image
-                src={"/images/icon-nav-movies.svg"}
-                alt="movies"
-                width={20}
-                height={20}
-              />
-            </Link>
-            <Link href={"tv-series"}>
-              <Image
-                src={"/images/icon-nav-tv-series.svg"}
-                alt="tv series"
-                width={20}
-                height={20}
-              />
-            </Link>
-            <Link href={"/bookmarks"}>
-              <Image
-                src={"/images/icon-nav-bookmark.svg"}
-                alt="bookmarks"
-                width={16.92}
-                height={20}
-              />
-            </Link>
-          </div>
-          <Image
-            className="rounded-full border-2 border-white"
-            src={"/images/image-avatar.png"}
-            alt="profile picture"
-            width={24}
-            height={24}
-          />
-        </nav>
         <div className="flex h-6 items-center gap-4 pb-6 pt-[80px]">
-          <Image
-            src={"/images/icon-search.svg"}
-            alt="search icon"
-            width={24.01}
-            height={24.01}
-          />
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-[32px] w-[32px]">
+            <path
+              d="M27.613 25.72 23.08 21.2a10.56 10.56 0 0 0 2.253-6.533C25.333 8.776 20.558 4 14.667 4S4 8.776 4 14.667c0 5.89 4.776 10.666 10.667 10.666A10.56 10.56 0 0 0 21.2 23.08l4.52 4.533a1.333 1.333 0 0 0 1.893 0 1.333 1.333 0 0 0 0-1.893ZM6.667 14.667a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z"
+              fill="#FFF"
+            />
+          </svg>
           <input
             className="bg-darkest-blue text-[1rem] font-light text-white outline-none placeholder:font-light placeholder:text-white/50 sm:text-heading-m"
             type="text"
