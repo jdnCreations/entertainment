@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-export default function Recommended() {
+export default function MediaCard() {
   return (
-    <div className="relative max-h-[110px] max-w-[164px]">
+    <div className="relative max-w-[164px]">
       <div className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-[#000000]/50">
         <Image
           src={"/images/icon-bookmark-v2.svg"}
@@ -18,7 +18,7 @@ export default function Recommended() {
         height={110}
         className="rounded-lg"
       />
-      <div className="bottom-4 left-4 flex flex-col text-[0.75rem] font-light text-white/75">
+      <div className="flex flex-col text-[0.75rem] font-light text-white/75">
         <div className="flex items-center gap-2">
           <p>2019</p>
           <div className="h-[3px] w-[3px] rounded-full bg-[#979797]"></div>

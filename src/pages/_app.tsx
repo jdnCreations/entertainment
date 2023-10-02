@@ -19,7 +19,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     // <SessionProvider session={session}>
-    <main className={outfit.className}>
+    <main
+      className={
+        outfit.className &&
+        "h-full min-h-screen bg-darkest-blue p-4 pt-[80px] text-white"
+      }
+    >
       <Navbar />
       <Component {...pageProps} />
     </main>
