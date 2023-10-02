@@ -1,13 +1,30 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import MediaCard from "~/components/MediaCard";
-import Recommended from "~/components/MediaCard";
 import Search from "~/components/Search";
 import Title from "~/components/Title";
+import TrendingCard from "~/components/TrendingCard";
+import type { MediaItem } from "~/types/mediaTypes";
 
 export default function Home() {
+  const [data, setData] = useState<MediaItem[] | null>(null);
+
+  useEffect(() => {
+    fetch("/data.json")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        setData(json);
+      })
+      .catch((error) => console.error("Error fetching data"));
+  }, []);
+
+  const trendingWidth = data?.filter((item) => item.isTrending).length * 240;
+
+  console.log(trendingWidth);
+
   return (
     <>
       <Head>
@@ -18,38 +35,16 @@ export default function Home() {
       <div>
         <Search />
         <Title text="Trending" />
-        <div className="pb-6">
-          <div className="relative">
-            <div className="absolute bottom-0 h-[70px] w-[240px] rounded-b-lg  bg-gradient-to-t from-[#000000] to-[#000000]/0"></div>
-            <div className="absolute h-[140px] w-[240px]">
-              <div className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-[#000000]/50">
-                <Image
-                  src={"/images/icon-bookmark-v2.svg"}
-                  alt="empty bookmark icon"
-                  width={12}
-                  height={14}
-                />
-              </div>
-            </div>
-            <div className="absolute bottom-4 left-4 flex flex-col text-[0.75rem] font-light text-white/75">
-              <div className="flex items-center gap-2">
-                <p>2019</p>
-                <div className="h-[3px] w-[3px] rounded-full bg-[#979797]"></div>
-                <p>Movie</p>
-                <div className="h-[3px] w-[3px] rounded-full bg-[#979797]"></div>
-                <p>PG</p>
-              </div>
-              <p className="text-body-m font-medium text-white">Beyond Earth</p>
-            </div>
-            <Image
-              src={"/images/thumbnails/beyond-earth/trending/small.jpg"}
-              alt="beyond earth thumbnail"
-              width={240}
-              height={140}
-              className="rounded-lg"
-            />
+        <div className="w-full gap-2 overflow-x-auto whitespace-nowrap">
+          <div
+            className={`grid-cols-auto grid h-[140px] snap-x snap-mandatory auto-cols-[70%] grid-flow-col gap-2`}
+          >
+            {data
+              ?.filter((item) => item.isTrending)
+              .map((item) => <TrendingCard key={item?.title} media={item} />)}
           </div>
         </div>
+
         <Title text="Recommended for you" />
 
         <div className="grid grid-cols-2 gap-4 pb-6">
