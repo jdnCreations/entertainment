@@ -35,9 +35,9 @@ export default function Home() {
       <div>
         <Search />
         <Title text="Trending" />
-        <div className="w-full gap-2 overflow-x-auto whitespace-nowrap">
+        <div className="w-full snap-x snap-mandatory gap-2 overflow-x-auto whitespace-nowrap">
           <div
-            className={`grid-cols-auto grid h-[140px] snap-x snap-mandatory auto-cols-[70%] grid-flow-col gap-2`}
+            className={`grid-cols-auto grid h-[140px] auto-cols-[240px] grid-flow-col gap-2`}
           >
             {data
               ?.filter((item) => item.isTrending)
@@ -48,9 +48,7 @@ export default function Home() {
         <Title text="Recommended for you" />
 
         <div className="grid grid-cols-2 gap-4 pb-6">
-          <MediaCard />
-          <MediaCard />
-          <MediaCard />
+          {data?.map((item) => <MediaCard key={item?.title} media={item} />)}
         </div>
       </div>
     </>

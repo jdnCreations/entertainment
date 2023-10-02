@@ -7,17 +7,9 @@ export default function Bookmarks() {
     <div>
       <Search />
       <Title text="Bookmarked Movies" />
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-8">
-        <MediaCard />
-        <MediaCard />
-        <MediaCard />
-      </div>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-8"></div>
       <Title text="Bookmarked TV Series" />
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-8">
-        <MediaCard />
-        <MediaCard />
-        <MediaCard />
-      </div>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-8"></div>
     </div>
   );
 }
