@@ -16,7 +16,7 @@ export default function TV() {
         );
         setData(filteredMovies);
       })
-      .catch((error) => console.error("Error fetching data"));
+      .catch((error) => console.error("Error fetching data", error));
   }, []);
 
   return (

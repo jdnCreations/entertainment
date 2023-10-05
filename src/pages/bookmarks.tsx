@@ -1,4 +1,3 @@
-import MediaCard from "~/components/MediaCard";
 import Search from "~/components/Search";
 import Title from "~/components/Title";
 

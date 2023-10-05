@@ -1,6 +1,4 @@
-import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import MediaCard from "~/components/MediaCard";
 import NavbarDesktop from "~/components/NavbarDesktop";
@@ -18,7 +16,7 @@ export default function Home() {
       .then((json: MediaItem[]) => {
         setData(json);
       })
-      .catch((error) => console.error("Error fetching data"));
+      .catch((error) => console.error("Error fetching data", error));
   }, []);
 
   return (
