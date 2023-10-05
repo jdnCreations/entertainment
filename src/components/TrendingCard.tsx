@@ -8,7 +8,7 @@ export default function TrendingCard(props: { media: MediaItem }) {
   return (
     <div className="relative h-full w-full snap-start">
       <div className="absolute bottom-0 h-[70px] w-full rounded-b-lg  bg-gradient-to-t from-[#000000] to-[#000000]/0"></div>
-      <div className="absolute h-[140px] w-full">
+      <div className="absolute h-[140px] w-full md:h-[230px]">
         <div className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-[#000000]/50">
           <Image
             src={"/assets/icon-bookmark-v2.svg"}
@@ -31,10 +31,9 @@ export default function TrendingCard(props: { media: MediaItem }) {
       <Image
         src={imagePath}
         alt={props.media.title}
-        className="rounded-lg"
+        className="rounded-lg md:h-[230px] md:w-[470px]"
         height={140}
         width={240}
-        style={{ width: "240px", height: "140px" }}
       />
     </div>
   );

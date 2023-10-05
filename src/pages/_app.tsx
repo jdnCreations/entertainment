@@ -7,6 +7,7 @@ import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
 import Navbar from "~/components/Navbar";
+import NavbarDesktop from "~/components/NavbarDesktop";
 
 const outfit = Outfit({
   weight: ["300", "500"],
@@ -22,7 +23,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <main
       className={
         outfit.className &&
-        "h-full min-h-screen bg-darkest-blue p-4 pt-[80px] text-white"
+        "h-full min-h-screen bg-darkest-blue p-4 pt-[80px] text-white md:pt-[96px] lg:pt-[64px]"
       }
     >
       <Navbar />

@@ -15,7 +15,6 @@ export default function Movies() {
           (item: MediaItem) => item.category === "Movie",
         );
         setData(filteredMovies);
-        console.log(filteredMovies);
       })
       .catch((error) => console.error("Error fetching data"));
   }, []);
@@ -24,7 +23,7 @@ export default function Movies() {
     <div>
       <Search />
       <Title text="Movies" />
-      <div className="grid grid-cols-2 gap-4 pb-6">
+      <div className="grid grid-cols-2 gap-4 pb-6 md:grid-cols-3">
         {data?.map((item) => <MediaCard key={item?.title} media={item} />)}
       </div>
     </div>

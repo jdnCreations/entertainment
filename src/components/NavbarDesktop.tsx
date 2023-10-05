@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function Navbar() {
+export default function NavbarDesktop() {
   const router = useRouter();
   const currentPage = router.asPath;
 
@@ -11,8 +11,8 @@ export default function Navbar() {
   const bookmarks = "/bookmarks";
 
   return (
-    <div className="md:absolute md:top-6 md:flex md:w-[calc(100%-2rem)]">
-      <nav className="absolute left-0 top-0 flex h-[56px] w-screen items-center justify-between bg-dark-blue p-4 md:w-full md:rounded-[10px] lg:hidden">
+    <nav className="hidden h-screen items-center justify-between bg-dark-blue p-4 lg:flex lg:flex-col lg:rounded-[20px]">
+      <div className="sticky flex justify-between lg:flex lg:flex-col lg:items-center lg:gap-[4.625rem]">
         <Link href={"/"}>
           <svg
             width="33"
@@ -23,7 +23,7 @@ export default function Navbar() {
             <path d="m26.463.408 3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-1.6a3.186 3.186 0 0 0-3.184 3.2l-.016 19.2a3.2 3.2 0 0 0 3.2 3.2h25.6a3.2 3.2 0 0 0 3.2-3.2V.408h-6.4Z" />
           </svg>
         </Link>
-        <div className="flex gap-6">
+        <div className="flex gap-6 lg:flex-col">
           <Link href={"/"}>
             <svg
               width="20"
@@ -76,14 +76,14 @@ export default function Navbar() {
             </svg>
           </Link>
         </div>
-        <Image
-          className="rounded-full border-2 border-white"
-          src={"/images/image-avatar.png"}
-          alt="profile picture"
-          width={24}
-          height={24}
-        />
-      </nav>
-    </div>
+      </div>
+      <Image
+        className="rounded-full border-2 border-white"
+        src={"/images/image-avatar.png"}
+        alt="profile picture"
+        width={24}
+        height={24}
+      />
+    </nav>
   );
 }
