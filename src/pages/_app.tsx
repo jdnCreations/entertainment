@@ -21,7 +21,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <main
       className={
         outfit.className &&
-        "h-full min-h-screen bg-darkest-blue p-4 pt-[80px] text-white md:pt-[96px] lg:pt-[64px]"
+        "h-full min-h-screen w-screen bg-darkest-blue p-4 pt-[80px] text-white md:pt-[96px] lg:pt-[64px]"
       }
     >
       <Navbar />
