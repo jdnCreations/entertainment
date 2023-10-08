@@ -11,8 +11,8 @@ export default function NavbarDesktop() {
   const bookmarks = "/bookmarks";
 
   return (
-    <nav className="hidden h-screen items-center justify-between bg-dark-blue p-4 lg:flex lg:flex-col lg:rounded-[20px]">
-      <div className="sticky flex justify-between lg:flex lg:flex-col lg:items-center lg:gap-[4.625rem]">
+    <nav className="hidden h-screen items-center justify-between bg-dark-blue p-8 lg:rounded-[20px] xl:flex xl:flex-col">
+      <div className="sticky flex justify-between lg:flex lg:flex-col lg:gap-[4.625rem] xl:items-center">
         <Link href={"/"}>
           <svg
             width="33"
@@ -81,8 +81,8 @@ export default function NavbarDesktop() {
         className="rounded-full border-2 border-white"
         src={"/images/image-avatar.png"}
         alt="profile picture"
-        width={24}
-        height={24}
+        width={40}
+        height={40}
       />
     </nav>
   );

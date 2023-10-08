@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { MediaItem } from "~/types/mediaTypes";
+import BookmarkButton from "./BookmarkButton";
 
 export default function TrendingCard(props: { media: MediaItem }) {
   const imagePath = props.media.thumbnail.trending.small.slice(1);
@@ -9,14 +10,15 @@ export default function TrendingCard(props: { media: MediaItem }) {
     <div className="relative h-full w-full snap-start">
       <div className="absolute bottom-0 h-[70px] w-full rounded-b-lg  bg-gradient-to-t from-[#000000] to-[#000000]/0"></div>
       <div className="absolute h-[140px] w-full md:h-[230px]">
-        <div className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-[#000000]/50">
+        <BookmarkButton isBookmarked={props.media.isBookmarked} />
+        {/* <div className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-[#000000]/50">
           <Image
             src={"/assets/icon-bookmark-v2.svg"}
             alt="empty bookmark icon"
             width={12}
             height={14}
           />
-        </div>
+        </div> */}
       </div>
       <div className="absolute bottom-4 left-4 flex flex-col text-[0.75rem] font-light text-white/75">
         <div className="flex items-center gap-2">

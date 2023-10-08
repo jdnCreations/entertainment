@@ -12,7 +12,7 @@ export default function Navbar() {
 
   return (
     <div className="md:absolute md:top-6 md:flex md:w-[calc(100%-2rem)]">
-      <nav className="absolute left-0 top-0 flex h-[56px] w-screen items-center justify-between bg-dark-blue p-4 md:w-full md:rounded-[10px] lg:hidden">
+      <nav className="absolute left-0 top-0 flex h-[56px] w-screen items-center justify-between bg-dark-blue p-4 md:w-full md:rounded-[10px] xl:hidden">
         <Link href={"/"}>
           <svg
             width="33"

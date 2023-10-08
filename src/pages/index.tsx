@@ -29,12 +29,12 @@ export default function Home() {
 
       <div className="lg:flex lg:gap-9">
         <NavbarDesktop />
-        <div>
+        <div className="max-w-full">
           <Search />
           <Title text="Trending" />
-          <div className="w-full snap-x snap-mandatory gap-2 overflow-x-auto whitespace-nowrap">
+          <div className="max-w-[1240px] snap-x snap-mandatory gap-2 overflow-x-auto whitespace-nowrap xl:max-w-full">
             <div
-              className={`grid-cols-auto grid h-[140px] auto-cols-[240px] grid-flow-col gap-2 md:h-[230px] md:auto-cols-[470px]`}
+              className={`grid h-[140px] auto-cols-[240px] grid-flow-col gap-2 md:h-[230px] md:auto-cols-[470px]`}
             >
               {data
                 ?.filter((item) => item.isTrending)
@@ -42,7 +42,7 @@ export default function Home() {
             </div>
           </div>
           <Title text="Recommended for you" />
-          <div className="grid grid-cols-2 gap-4 pb-6 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid max-w-[1240px] grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 lg:grid-cols-4">
             {data?.map((item) => <MediaCard key={item?.title} media={item} />)}
           </div>
         </div>
