@@ -6,9 +6,14 @@ import Search from "~/components/Search";
 import Title from "~/components/Title";
 import TrendingCard from "~/components/TrendingCard";
 import type { MediaItem } from "~/types/mediaTypes";
+import searchMediaItems from "~/utils/search";
 
 export default function Home() {
   const [data, setData] = useState<MediaItem[] | null>(null);
+  const [filteredBySearch, setFilteredBySearch] = useState<MediaItem[] | null>(
+    null,
+  );
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     fetch("/data.json")
@@ -18,6 +23,14 @@ export default function Home() {
       })
       .catch((error) => console.error("Error fetching data", error));
   }, []);
+
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+    if (data) {
+      const filtered: MediaItem[] | null = searchMediaItems(data, term);
+      setFilteredBySearch(filtered);
+    }
+  };
 
   return (
     <>
@@ -30,21 +43,42 @@ export default function Home() {
       <div className="lg:flex lg:gap-9">
         <NavbarDesktop />
         <div className="max-w-full">
-          <Search />
-          <Title text="Trending" />
-          <div className="max-w-[1240px] snap-x snap-mandatory gap-2 overflow-x-auto whitespace-nowrap xl:max-w-full">
-            <div
-              className={`grid h-[140px] auto-cols-[240px] grid-flow-col gap-2 md:h-[230px] md:auto-cols-[470px]`}
-            >
-              {data
-                ?.filter((item) => item.isTrending)
-                .map((item) => <TrendingCard key={item?.title} media={item} />)}
-            </div>
-          </div>
-          <Title text="Recommended for you" />
-          <div className="grid max-w-[1240px] grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 lg:grid-cols-4">
-            {data?.map((item) => <MediaCard key={item?.title} media={item} />)}
-          </div>
+          <Search onSearch={handleSearch} />
+
+          {filteredBySearch !== null ? (
+            <>
+              <p>
+                Found {filteredBySearch.length} results for &apos;{searchTerm}
+                &apos;
+              </p>
+              <div className="grid max-w-[1240px] grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 lg:grid-cols-4">
+                {filteredBySearch?.map((item) => (
+                  <MediaCard key={item?.title} media={item} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <Title text="Trending" />
+              <div className="max-w-full snap-x snap-mandatory gap-2 overflow-x-auto whitespace-nowrap">
+                <div
+                  className={`grid h-[140px] auto-cols-[240px] grid-flow-col gap-2 md:h-[230px] md:auto-cols-[470px]`}
+                >
+                  {data
+                    ?.filter((item) => item.isTrending)
+                    .map((item) => (
+                      <TrendingCard key={item?.title} media={item} />
+                    ))}
+                </div>
+              </div>
+              <Title text="Recommended for you" />
+              <div className="grid max-w-[1240px] grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 lg:grid-cols-4">
+                {data?.map((item) => (
+                  <MediaCard key={item?.title} media={item} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

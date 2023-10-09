@@ -16,7 +16,7 @@ export default function MediaCard(props: { media: MediaItem }) {
         height={110}
         className="rounded-lg md:w-[220px] lg:w-[280px]"
       />
-      <div className="flex flex-col pt-2 text-[0.75rem] font-light text-white/75">
+      <div className="flex flex-col pt-2 text-[0.75rem] font-light text-white/75 md:text-body-s">
         <div className="flex items-center gap-2">
           <p>{year}</p>
           <div className="h-[3px] w-[3px] rounded-full bg-[#979797]"></div>
@@ -42,7 +42,9 @@ export default function MediaCard(props: { media: MediaItem }) {
           <div className="h-[3px] w-[3px] rounded-full bg-[#979797]"></div>
           <p>{rating}</p>
         </div>
-        <p className="text-body-m font-medium text-white">{title}</p>
+        <p className="text-body-m font-medium text-white md:text-heading-xs">
+          {title}
+        </p>
       </div>
     </div>
   );

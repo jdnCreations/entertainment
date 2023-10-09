@@ -1,4 +1,9 @@
-export default function Search() {
+import { useState } from "react";
+import type { MediaItem } from "~/types/mediaTypes";
+
+export default function Search(props: { onSearch: (term: string) => void }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <div className="flex max-w-[400px] items-center gap-4 pb-6 xl:pt-8">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-[32px] w-[32px]">
@@ -11,6 +16,11 @@ export default function Search() {
         className="w-full bg-darkest-blue text-[1rem] font-light text-white outline-none placeholder:font-light placeholder:text-white/50 md:text-heading-m"
         type="text"
         placeholder="Search for movies or TV series"
+        value={searchTerm}
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+          props.onSearch(e.target.value);
+        }}
       />
     </div>
   );
