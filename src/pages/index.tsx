@@ -43,15 +43,18 @@ export default function Home() {
       <div className="lg:flex lg:gap-9">
         <NavbarDesktop />
         <div className="max-w-full">
-          <Search onSearch={handleSearch} />
+          <Search
+            placeholderText="Search for movies or TV series"
+            onSearch={handleSearch}
+          />
 
           {filteredBySearch !== null ? (
             <>
-              <p>
-                Found {filteredBySearch.length} results for &apos;{searchTerm}
-                &apos;
-              </p>
-              <div className="grid max-w-[1240px] grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 lg:grid-cols-4">
+              <Title
+                text={`
+              Found ${filteredBySearch.length} results for '${searchTerm}'`}
+              />
+              <div className="grid grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 lg:grid-cols-4">
                 {filteredBySearch?.map((item) => (
                   <MediaCard key={item?.title} media={item} />
                 ))}
@@ -60,7 +63,7 @@ export default function Home() {
           ) : (
             <>
               <Title text="Trending" />
-              <div className="max-w-full snap-x snap-mandatory gap-2 overflow-x-auto whitespace-nowrap">
+              <div className="snap-x snap-mandatory gap-2 overflow-x-auto whitespace-nowrap">
                 <div
                   className={`grid h-[140px] auto-cols-[240px] grid-flow-col gap-2 md:h-[230px] md:auto-cols-[470px]`}
                 >
@@ -72,7 +75,7 @@ export default function Home() {
                 </div>
               </div>
               <Title text="Recommended for you" />
-              <div className="grid max-w-[1240px] grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 lg:grid-cols-4">
+              <div className="grid max-w-[1240px] grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 xl:grid-cols-4">
                 {data?.map((item) => (
                   <MediaCard key={item?.title} media={item} />
                 ))}

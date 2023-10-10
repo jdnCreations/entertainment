@@ -11,7 +11,7 @@ export default function NavbarDesktop() {
   const bookmarks = "/bookmarks";
 
   return (
-    <nav className="hidden h-[calc(100vh-64px)] items-center justify-between bg-dark-blue p-8 lg:rounded-[20px] xl:flex xl:flex-col">
+    <nav className="hidden h-[calc(100vh-64px)] w-[96px] items-center justify-between bg-dark-blue p-8 lg:rounded-[20px] xl:flex xl:flex-col">
       <div className="sticky flex justify-between lg:flex lg:flex-col lg:gap-[4.625rem] xl:items-center">
         <Link href={"/"}>
           <svg

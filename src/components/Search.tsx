@@ -1,7 +1,10 @@
 import { useState } from "react";
 import type { MediaItem } from "~/types/mediaTypes";
 
-export default function Search(props: { onSearch: (term: string) => void }) {
+export default function Search(props: {
+  onSearch: (term: string) => void;
+  placeholderText: string;
+}) {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
@@ -15,7 +18,7 @@ export default function Search(props: { onSearch: (term: string) => void }) {
       <input
         className="w-full bg-darkest-blue text-[1rem] font-light text-white outline-none placeholder:font-light placeholder:text-white/50 md:text-heading-m"
         type="text"
-        placeholder="Search for movies or TV series"
+        placeholder={props.placeholderText}
         value={searchTerm}
         onChange={(e) => {
           setSearchTerm(e.target.value);
