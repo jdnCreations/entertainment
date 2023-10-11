@@ -42,7 +42,7 @@ export default function Home() {
 
       <div className="lg:flex lg:gap-9">
         <NavbarDesktop />
-        <div className="max-w-full">
+        <div className="max-w-full xl:max-w-[calc(100%-140px)]">
           <Search
             placeholderText="Search for movies or TV series"
             onSearch={handleSearch}
