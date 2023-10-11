@@ -23,7 +23,7 @@ export default function Bookmarks() {
         setData(filteredMovies);
       })
       .catch((error) => console.error("Error fetching data", error));
-  }, []);
+  }, [data]);
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);

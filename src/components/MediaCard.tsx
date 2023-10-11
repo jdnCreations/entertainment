@@ -8,7 +8,10 @@ export default function MediaCard(props: { media: MediaItem }) {
 
   return (
     <div className="relative max-w-[164px] md:max-w-[220px] lg:max-w-[280px]">
-      <BookmarkButton isBookmarked={props.media.isBookmarked} />
+      <BookmarkButton
+        title={props.media.title}
+        isBookmarked={props.media.isBookmarked}
+      />
       <Image
         src={imagePath}
         alt={title}

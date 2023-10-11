@@ -10,7 +10,7 @@ export default function TrendingCard(props: { media: MediaItem }) {
     <div className="relative h-full w-full snap-start">
       <div className="absolute bottom-0 h-[70px] w-full rounded-b-lg  bg-gradient-to-t from-[#000000] to-[#000000]/0"></div>
       <div className="absolute h-[140px] w-full md:h-[230px]">
-        <BookmarkButton isBookmarked={props.media.isBookmarked} />
+        <BookmarkButton title={title} isBookmarked={props.media.isBookmarked} />
       </div>
       <div className="absolute bottom-4 left-4 flex flex-col text-[0.75rem] font-light text-white/75 md:text-body-m">
         <div className="flex items-center gap-2">
