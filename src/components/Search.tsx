@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { MediaItem } from "~/types/mediaTypes";
 
 export default function Search(props: {
   onSearch: (term: string) => void;
