@@ -62,18 +62,18 @@ model User {
 }
 
 model Media {
-  id                     Int        @id @default(autoincrement())
-  title                  String
-  year                   Int
-  category               String
-  rating                 String
-  isTrending             Boolean
-  thumbnailTrendingSmall String?
-  thumbnailTrendingLarge String?
-  thumbnailRegularSmall  String
-  thumbnailRegularMedium String
-  thumbnailRegularLarge  String
-  Bookmark               Bookmark[]
+  id         String     @id @default(cuid())
+  title      String
+  year       Int
+  category   String
+  rating     String
+  isTrending Boolean
+  Bookmark   Bookmark[]
+
+  regularThumbnail    Thumbnail? @relation("regular", fields: [regularThumbnailId], references: [id])
+  trendingThumbnail   Thumbnail? @relation("trending", fields: [trendingThumbnailId], references: [id])
+  regularThumbnailId  String?    @unique
+  trendingThumbnailId String?    @unique
 }
 
 model Bookmark {
@@ -81,7 +81,20 @@ model Bookmark {
   media   Media  @relation(fields: [mediaId], references: [id])
   user    User   @relation(fields: [userId], references: [id])
   userId  String
-  mediaId Int
+  mediaId String
+}
+
+model Thumbnail {
+  id     String  @id @default(cuid())
+  small  String
+  medium String?
+  large  String
+
+  mediaForRegular   Media?  @relation(name: "regular")
+  mediaForRegularId String?
+
+  mediaForTrending   Media?  @relation(name: "trending")
+  mediaForTrendingId String?
 }
 
 model VerificationToken {

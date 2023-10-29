@@ -1,24 +1,35 @@
 import Image from "next/image";
 import type { MediaItem } from "~/types/mediaTypes";
 import BookmarkButton from "./BookmarkButton";
+import PlayOverlay from "./PlayOverlay";
+import { api } from "~/utils/api";
 
-export default function MediaCard(props: { media: MediaItem }) {
-  const imagePath = props.media.thumbnail.regular.small.slice(1);
+export default function MediaCard(props: {
+  media: MediaItem;
+  bookmarked: boolean;
+  handleBookmark: (mediaId: number, bookmarked: boolean) => void;
+}) {
+  const imagePath = props.media.thumbnailRegularSmall.slice(1);
   const { category, rating, year, title } = props.media;
 
   return (
     <div className="relative max-w-[164px] md:max-w-[220px] lg:max-w-[280px]">
-      <BookmarkButton
-        title={props.media.title}
-        isBookmarked={props.media.isBookmarked}
-      />
-      <Image
-        src={imagePath}
-        alt={title}
-        width={164}
-        height={110}
-        className="rounded-lg md:w-[220px] lg:w-[280px]"
-      />
+      <div className="w-[220px] rounded-lg md:w-[220px] lg:w-[280px]">
+        {/* <PlayOverlay /> */}
+        <BookmarkButton
+          title={props.media.title}
+          media={props.media}
+          isBookmarked={props.bookmarked}
+          handleBookmark={props.handleBookmark}
+        />
+        <Image
+          src={imagePath}
+          alt={title}
+          width={164}
+          height={110}
+          className="rounded-lg md:w-[220px] lg:w-[280px]"
+        />
+      </div>
       <div className="flex flex-col pt-2 text-[0.75rem] font-light text-white/75 md:text-body-s">
         <div className="flex items-center gap-2">
           <p>{year}</p>

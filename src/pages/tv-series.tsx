@@ -4,26 +4,18 @@ import NavbarDesktop from "~/components/NavbarDesktop";
 import Search from "~/components/Search";
 import Title from "~/components/Title";
 import type { MediaItem } from "~/types/mediaTypes";
+import { api } from "~/utils/api";
 import searchMediaItems from "~/utils/search";
 
 export default function TV() {
-  const [data, setData] = useState<MediaItem[] | null>(null);
   const [filteredBySearch, setFilteredBySearch] = useState<MediaItem[] | null>(
     null,
   );
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  useEffect(() => {
-    fetch("/data.json")
-      .then((response) => response.json())
-      .then((json: MediaItem[]) => {
-        const filteredMovies = json.filter(
-          (item: MediaItem) => item.category === "TV Series",
-        );
-        setData(filteredMovies);
-      })
-      .catch((error) => console.error("Error fetching data", error));
-  }, []);
+  const data = api.media.getAll
+    .useQuery()
+    .data?.filter((item) => item.category === "TV Series");
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);

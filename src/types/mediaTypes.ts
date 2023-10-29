@@ -10,13 +10,17 @@ export type ThumbnailObject = {
 };
 
 export type MediaItem = {
+  id: number;
   title: string;
-  thumbnail: ThumbnailObject;
   year: number;
-  category: Category;
+  category: string;
   rating: string;
-  isBookmarked: boolean;
   isTrending: boolean;
+  thumbnailTrendingSmall: string | null;
+  thumbnailTrendingLarge: string | null;
+  thumbnailRegularSmall: string;
+  thumbnailRegularMedium: string;
+  thumbnailRegularLarge: string;
 };
 
 export type Category = "Movie" | "TV Series";

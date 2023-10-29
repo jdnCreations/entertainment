@@ -23,6 +23,7 @@ export default async function updateData(
   res: NextApiResponse,
 ) {
   if (req.method === "POST") {
+    console.log("Received POST request");
     try {
       const { title } = req.body as RequestBody;
 

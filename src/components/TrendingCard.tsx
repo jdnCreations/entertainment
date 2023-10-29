@@ -3,7 +3,7 @@ import type { MediaItem } from "~/types/mediaTypes";
 import BookmarkButton from "./BookmarkButton";
 
 export default function TrendingCard(props: { media: MediaItem }) {
-  const imagePath = props.media.thumbnail.trending.small.slice(1);
+  const imagePath = props.media.thumbnailRegularSmall.slice(1);
   const { title, category, rating, year } = props.media;
 
   return (

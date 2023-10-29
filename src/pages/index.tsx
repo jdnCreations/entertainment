@@ -6,23 +6,17 @@ import Search from "~/components/Search";
 import Title from "~/components/Title";
 import TrendingCard from "~/components/TrendingCard";
 import type { MediaItem } from "~/types/mediaTypes";
+import { api } from "~/utils/api";
 import searchMediaItems from "~/utils/search";
 
 export default function Home() {
-  const [data, setData] = useState<MediaItem[] | null>(null);
+  // const [data, setData] = useState<MediaItem[] | null>(null);
   const [filteredBySearch, setFilteredBySearch] = useState<MediaItem[] | null>(
     null,
   );
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  useEffect(() => {
-    fetch("/data.json")
-      .then((response) => response.json())
-      .then((json: MediaItem[]) => {
-        setData(json);
-      })
-      .catch((error) => console.error("Error fetching data", error));
-  }, []);
+  const data: MediaItem[] | undefined = api.media.getAll.useQuery().data;
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
@@ -56,7 +50,11 @@ export default function Home() {
               />
               <div className="grid grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 lg:grid-cols-4">
                 {filteredBySearch?.map((item) => (
-                  <MediaCard key={item?.title} media={item} />
+                  <MediaCard
+                    key={item?.title}
+                    media={item}
+                    bookmarked={false}
+                  />
                 ))}
               </div>
             </>
@@ -77,7 +75,11 @@ export default function Home() {
               <Title text="Recommended for you" />
               <div className="grid max-w-[1240px] grid-cols-2 gap-4 pb-6 md:grid-cols-3 md:gap-10 xl:grid-cols-4">
                 {data?.map((item) => (
-                  <MediaCard key={item?.title} media={item} />
+                  <MediaCard
+                    key={item?.title}
+                    media={item}
+                    bookmarked={false}
+                  />
                 ))}
               </div>
             </>

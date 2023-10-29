@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,6 +10,8 @@ export default function Navbar() {
   const movies = "/movies";
   const tv = "/tv-series";
   const bookmarks = "/bookmarks";
+
+  const session = useSession();
 
   return (
     <div className="md:absolute md:top-6 md:flex md:w-[calc(100%-2rem)]">
@@ -29,7 +32,7 @@ export default function Navbar() {
               width="20"
               height="20"
               xmlns="http://www.w3.org/2000/svg"
-              className={` hover:fill-white ${
+              className={` hover:fill-red ${
                 currentPage === "/" ? "fill-white" : "fill-light-blue"
               }`}
             >
@@ -44,7 +47,7 @@ export default function Navbar() {
               width="20"
               height="20"
               xmlns="http://www.w3.org/2000/svg"
-              className={`hover:fill-white ${
+              className={`hover:fill-red ${
                 currentPage === movies ? "fill-white" : "fill-light-blue"
               }`}
             >
@@ -56,7 +59,7 @@ export default function Navbar() {
               width="20"
               height="20"
               xmlns="http://www.w3.org/2000/svg"
-              className={` hover:fill-white ${
+              className={` hover:fill-red ${
                 currentPage === tv ? "fill-white" : "fill-light-blue"
               }`}
             >
@@ -68,7 +71,7 @@ export default function Navbar() {
               width="17"
               height="20"
               xmlns="http://www.w3.org/2000/svg"
-              className={` hover:fill-white ${
+              className={` hover:fill-red ${
                 currentPage === bookmarks ? "fill-white" : "fill-light-blue"
               }`}
             >
@@ -76,13 +79,15 @@ export default function Navbar() {
             </svg>
           </Link>
         </div>
-        <Image
-          className="rounded-full border-2 border-white"
-          src={"/images/image-avatar.png"}
-          alt="profile picture"
-          width={24}
-          height={24}
-        />
+        {session.status === "authenticated" && (
+          <Image
+            className="rounded-full border-2 border-white"
+            src={session.data.user.image!}
+            alt="profile picture"
+            width={24}
+            height={24}
+          />
+        )}
       </nav>
     </div>
   );

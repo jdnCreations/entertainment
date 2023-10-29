@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,6 +10,8 @@ export default function NavbarDesktop() {
   const movies = "/movies";
   const tv = "/tv-series";
   const bookmarks = "/bookmarks";
+
+  const session = useSession();
 
   return (
     <nav className="hidden h-[calc(100vh-64px)] w-[96px] items-center justify-between bg-dark-blue p-8 lg:rounded-[20px] xl:flex xl:flex-col">
@@ -29,7 +32,7 @@ export default function NavbarDesktop() {
               width="20"
               height="20"
               xmlns="http://www.w3.org/2000/svg"
-              className={` hover:fill-white ${
+              className={` hover:fill-red ${
                 currentPage === "/" ? "fill-white" : "fill-light-blue"
               }`}
             >
@@ -44,7 +47,7 @@ export default function NavbarDesktop() {
               width="20"
               height="20"
               xmlns="http://www.w3.org/2000/svg"
-              className={`hover:fill-white ${
+              className={`hover:fill-red ${
                 currentPage === movies ? "fill-white" : "fill-light-blue"
               }`}
             >
@@ -56,7 +59,7 @@ export default function NavbarDesktop() {
               width="20"
               height="20"
               xmlns="http://www.w3.org/2000/svg"
-              className={` hover:fill-white ${
+              className={` hover:fill-red ${
                 currentPage === tv ? "fill-white" : "fill-light-blue"
               }`}
             >
@@ -68,7 +71,7 @@ export default function NavbarDesktop() {
               width="17"
               height="20"
               xmlns="http://www.w3.org/2000/svg"
-              className={` hover:fill-white ${
+              className={` hover:fill-red ${
                 currentPage === bookmarks ? "fill-white" : "fill-light-blue"
               }`}
             >
@@ -77,13 +80,15 @@ export default function NavbarDesktop() {
           </Link>
         </div>
       </div>
-      <Image
-        className="rounded-full border-2 border-white"
-        src={"/assets/image-avatar.png"}
-        alt="profile picture"
-        width={40}
-        height={40}
-      />
+      {session.status === "authenticated" && (
+        <Image
+          className="rounded-full border-2 border-white"
+          src={session.data.user.image!}
+          alt="profile picture"
+          width={24}
+          height={24}
+        />
+      )}
     </nav>
   );
 }
